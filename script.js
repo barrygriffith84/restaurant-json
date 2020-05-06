@@ -26,7 +26,7 @@ document.querySelector("#search-btn").addEventListener("click", function () {
 
 
 
-//Event listener that listens for the enter key to pressed
+//Event listener for the enter key
 document.querySelector('#rest-input').addEventListener('keypress', function (e) {
   
   //Checks to see if the key pressed is the enter key

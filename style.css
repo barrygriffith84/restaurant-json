@@ -1,0 +1,23 @@
+body{
+    background-color: #7AA095;
+    padding: 3vw;
+    font-family: 'Oswald', serif;
+}
+
+.rest-input {
+    display: flex;
+    justify-content: center;
+}
+
+.rest-output {
+    display: flex; 
+    flex-flow: wrap;
+    padding-top: 3vw;
+    justify-content: space-evenly;
+}
+
+.card{
+    margin: 1vw;
+    background-color:  lightcyan;
+}
+
