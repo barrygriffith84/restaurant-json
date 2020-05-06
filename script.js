@@ -13,26 +13,58 @@
 // If you get done with all this, we have additional stretch goals for you-- feel free to slack us if you're interested in an extra challenge (edited) 
 
 
-fetch("http://localhost:8088/restaurants")
-.then(response => response.json())
-.then(parsedResponse => {
-    // console.log(parsedResponse)
-    parsedResponse.forEach(establishment => {
-        console.log(establishment.restaurant.menu_url)
-        document.querySelector("#rest-output").innerHTML += `      
-  <div class="card" style="width: 18rem;">
-  <div class="card-body">
-  <h4><a href="${establishment.restaurant.url}" target="_blank">${establishment.restaurant.name}</a></h4>
-  <p>Address: ${establishment.restaurant.location.address}</p>
-  <p>User Rating: ${establishment.restaurant.user_rating.aggregate_rating}</p>
-  <p>Average Cost for Two: ${establishment.restaurant.average_cost_for_two}</p>
-    <a href="${establishment.restaurant.menu_url}" target="_blank" class="btn btn-primary">Menu</a>
-  </div>
-</div>` 
-    });
+//Event listener for the search button
+document.querySelector("#search-btn").addEventListener("click", function () {
+
+  //Injects an empty string where I want to output my results to clear any search results that are currently on the page
+  document.querySelector("#rest-output").innerHTML = ""
+
+  //Function to print the search results as cards
+  print()
 })
 
 
-//menu_url
 
-//photos_url
+
+//Event listener that listens for the enter key to pressed
+document.querySelector('#rest-input').addEventListener('keypress', function (e) {
+  
+  //Checks to see if the key pressed is the enter key
+  if (e.key === 'Enter') {
+
+    //Injects an empty string where I want to output my results to clear any search results that are currently on the page
+    document.querySelector("#rest-output").innerHTML = ""
+
+    //Function to print the search results as cards
+    print()
+  }
+});
+
+
+
+
+//Function that takes the input the user is wanting to search and stores it in the searchTerm variable, then uses a fetch statement and foreach loop to print the results as cards.
+let print = function () {
+
+  //Variable to store the string that the user wants to search for
+  let searchTerm = document.querySelector("#search-input").value
+
+  //Fetches the results based on the searchTerm and prints the results as cards
+  fetch("http://localhost:8088/restaurants?q=" + searchTerm)
+    .then(response => response.json())
+    .then(parsedResponse => {
+      parsedResponse.forEach(establishment => {
+        document.querySelector("#rest-output").innerHTML += `      
+      <div class="card" style="width: 18rem;">
+      <div class="card-body">
+      <h4><a href="${establishment.restaurant.url}" target="_blank">${establishment.restaurant.name}</a></h4>
+      <p>Address: ${establishment.restaurant.location.address}</p>
+      <p>User Rating: ${establishment.restaurant.user_rating.aggregate_rating}</p>
+      <p>Average Cost for Two: ${establishment.restaurant.average_cost_for_two}</p>
+        <a href="${establishment.restaurant.menu_url}" target="_blank" class="btn btn-primary">Menu</a>
+      </div>
+    </div>`
+      })
+
+    })
+}
