@@ -1,11 +1,11 @@
 const buildRestaurantCard = (singleRestaurant) => {
     return `<div class="card" style="width: 18rem;">
     <div class="card-body">
-    <h4><a href="${singleRestaurant.restaurant.url}" target="_blank">${singleRestaurant.restaurant.name}</a></h4>
-    <p>Address: ${singleRestaurant.restaurant.location.address}</p>
-    <p>User Rating: ${singleRestaurant.restaurant.user_rating.aggregate_rating}</p>
-    <p>Average Cost for Two: ${singleRestaurant.restaurant.average_cost_for_two}</p>
-      <a href="${singleRestaurant.restaurant.menu_url}" target="_blank" class="btn btn-primary">Menu</a>
+    <h4><a href="${singleRestaurant.url}" target="_blank">${singleRestaurant.name}</a></h4>
+    <p>Address: ${singleRestaurant.address}</p>
+    <p>User Rating: ${singleRestaurant.averageUserRating}</p>
+    <p>Average Cost for Two: ${singleRestaurant.averageCostPerTwo}</p>
+      <a href="${singleRestaurant.menu_url}" target="_blank" class="btn btn-primary">Menu</a>
     </div>
   </div>`
   }
